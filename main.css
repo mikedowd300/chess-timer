@@ -50,8 +50,13 @@
 	background-color: green;
 }
 
+.innerBlack {
+	background-color: red;
+
+}
+
 h1 {
-	color: red;
+	color: white;
 	font-size: 100px;
 }
 
