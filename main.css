@@ -29,7 +29,7 @@
 	}
 
 .black, .white {
-	width: 49%;
+	width: 49.5%;
 }
 
 .black {
@@ -50,14 +50,22 @@
 	background-color: green;
 }
 
-.innerBlack {
-	background-color: red;
-
+.innerGo {
+	background-color: green;
 }
 
-h1 {
+.innerStop {
+	background-color: red;
+}
+
+#whiteOutput{
 	color: white;
-	font-size: 100px;
+	font-size: 150px;
+}
+
+#blackOutput{
+	color: black;
+	font-size: 150px;
 }
 
 h1, h2, p {

@@ -3,7 +3,8 @@ var innerHeight = $('.inner').css('width');
 var modalHeight = (.85 * parseInt(height)) + 'px';
 var pWidth = $('p').css('width');
 var white = true;
-var int;
+var whiteInt;
+var blackInt;
 
 $('.white').css('height', height);
 $('.black').css('height', height);
@@ -32,17 +33,49 @@ function startClock() {
 	}
 	$('.modal').css('display', 'none');
 	$('h1').text($('p').text());
-
-	int = setInterval(function(){
-		oneSecond();
-	}, 1000)
+	tickWhite();
 }
 
-function endMove() {
-	console.log('endMove');
-	if(white) white = false;
-	clearInterval(int);
+function endMove(whoPressedMe) {
+console.log(white, whoPressedMe);
+	if(white && whoPressedMe === 'white') {
+		white = false;
+		clearInterval(whiteInt);
+		$('#whiteOutput').removeClass('active');
+		$('#whiteOutput').addClass('paused');
+		$('#blackOutput').removeClass('paused');
+		$('#blackOutput').addClass('active');
+		$('.white .inner').removeClass('innerGo');
+		$('.white .inner').addClass('innerStop');
+		$('.black .inner').removeClass('innerStop');
+		$('.black .inner').addClass('innerGo');
+		tickBlack();
+	} else if(!white && whoPressedMe === 'black'){
+		white = true
+		clearInterval(blackInt);
+		$('#blackOutput').removeClass('active');
+		$('#blackOutput').addClass('paused');
+		$('#whiteOutput').removeClass('paused');
+		$('#whiteOutput').addClass('active');
+		$('.black .inner').removeClass('innerGo');
+		$('.black .inner').addClass('innerStop');
+		$('.white .inner').removeClass('innerStop');
+		$('.white .inner').addClass('innerGo');
+		tickWhite();
+	}
+}
 
+//looks like refactoring can remove a lot of code if I add some patameters to my functions
+function tickBlack() {
+	blackInt = setInterval(function(){
+		oneSecond();
+	}, 1000)	
+}
+
+function tickWhite() {
+	whiteInt = setInterval(function(){
+		oneSecond();
+	}, 1000)
 }
 
 function moreTime() {

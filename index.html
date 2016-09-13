@@ -20,13 +20,13 @@
 	</div>
 	<div class="container clearfix">
 		<div class="white">
-			<div class="inner innerWhite" onclick="endMove()">
-				<h1 class="active"></h1>
+			<div class="inner innerGo" onclick="endMove('white')">
+				<h1 id="whiteOutput" class="active"></h1>
 			</div>
 		</div>
 		<div class="black">
-			<div class="inner innerBlack" onclick="endMove()">
-				<h1 class="paused"></h1>
+			<div class="inner innerStop" onclick="endMove('black')">
+				<h1 id="blackOutput" class="paused"></h1>
 			</div>
 		</div>	
 	</div>
