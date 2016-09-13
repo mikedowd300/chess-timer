@@ -5,6 +5,7 @@ var pWidth = $('p').css('width');
 var white = true;
 var whiteInt;
 var blackInt;
+var gameOn = true;
 
 $('.white').css('height', height);
 $('.black').css('height', height);
@@ -23,7 +24,6 @@ for(var i = 59; i >= 0; i--) {
 }
 
 function startClock() {
-	// var minRay = [];
 	var minInit = parseInt($('p').text());
 	var whiteDate = new Date();
 	var blackdate = new Date();
@@ -37,31 +37,34 @@ function startClock() {
 }
 
 function endMove(whoPressedMe) {
-console.log(white, whoPressedMe);
-	if(white && whoPressedMe === 'white') {
-		white = false;
-		clearInterval(whiteInt);
-		$('#whiteOutput').removeClass('active');
-		$('#whiteOutput').addClass('paused');
-		$('#blackOutput').removeClass('paused');
-		$('#blackOutput').addClass('active');
-		$('.white .inner').removeClass('innerGo');
-		$('.white .inner').addClass('innerStop');
-		$('.black .inner').removeClass('innerStop');
-		$('.black .inner').addClass('innerGo');
-		tickBlack();
-	} else if(!white && whoPressedMe === 'black'){
-		white = true
-		clearInterval(blackInt);
-		$('#blackOutput').removeClass('active');
-		$('#blackOutput').addClass('paused');
-		$('#whiteOutput').removeClass('paused');
-		$('#whiteOutput').addClass('active');
-		$('.black .inner').removeClass('innerGo');
-		$('.black .inner').addClass('innerStop');
-		$('.white .inner').removeClass('innerStop');
-		$('.white .inner').addClass('innerGo');
-		tickWhite();
+	if(gameOn) {		
+		if(white && whoPressedMe === 'white') {
+			white = false;
+			console.log('\u2407');
+			clearInterval(whiteInt);
+			$('#whiteOutput').removeClass('active');
+			$('#whiteOutput').addClass('paused');
+			$('#blackOutput').removeClass('paused');
+			$('#blackOutput').addClass('active');
+			$('.white .inner').removeClass('innerGo');
+			$('.white .inner').addClass('innerStop');
+			$('.black .inner').removeClass('innerStop');
+			$('.black .inner').addClass('innerGo');
+			tickBlack();
+		} else if(!white && whoPressedMe === 'black'){
+			white = true;
+			console.log('\u2407');
+			clearInterval(blackInt);
+			$('#blackOutput').removeClass('active');
+			$('#blackOutput').addClass('paused');
+			$('#whiteOutput').removeClass('paused');
+			$('#whiteOutput').addClass('active');
+			$('.black .inner').removeClass('innerGo');
+			$('.black .inner').addClass('innerStop');
+			$('.white .inner').removeClass('innerStop');
+			$('.white .inner').addClass('innerGo');
+			tickWhite();
+		}
 	}
 }
 
@@ -103,13 +106,24 @@ function oneSecond() {
 	var sec = secRay.shift();
 	secRay.push(sec);
 	if (sec === 59) minRay.shift();	
-	if(sec < 10) sec = '0' + sec;	
-	$('h1.active').text(minRay[0] + ':' + sec);
-	if(white) {
-		secRayWhite = secRay.slice(0);
-		minRayWhite = minRay.slice(0);
+	if (minRay.length !== 0) { 
+		if(minRay[0] > 100) {
+			$('h1').css('font-size', '100px');
+		}else {
+			$('h1').css('font-size', '150px');
+		}
+		if(sec < 10) sec = '0' + sec;	
+		$('h1.active').text(minRay[0] + ':' + sec);
+		if(white) {
+			secRayWhite = secRay.slice(0);
+			minRayWhite = minRay.slice(0);
+		} else {
+			secRayBlack = secRay.slice(0);
+			minRayBlack = minRay.slice(0);
+		}	
 	} else {
-		secRayBlack = secRay.slice(0);
-		minRayBlack = minRay.slice(0);
+		$('h1.active').css('font-size', '50px').text('You Lose!!' + '\u0007');
+		gameOn = false;
 	}
 }
+

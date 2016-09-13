@@ -89,12 +89,14 @@ p {
 }
 
 .starter {
-	padding: 10px;
+	padding: 20px;
 	font-size: 30px;
-	color: black;
+	background-color: gray;
+	color: white;
+	border: 1px solid black;
 	border-radius: 50%;
 	display: block;
-	margin: 30px auto;
+	margin: 20px auto;
 }
 
 .time-p {
@@ -105,6 +107,7 @@ p {
 
 .time-buttons {
 	float: right;
+	/*width: 20%;*/
 }
 
 .time-wrapper {
@@ -117,14 +120,15 @@ p {
 
 .more-time, .less-time {
 	display: block;
-	padding: 16px;
+	padding: 16px 26px;
 	font-size: 2rem;
 	border-radius: 100%;
 	margin-top: 15px;
+	border: 1px solid black;
 }
 
 .less-time {
-	padding: 20px;
+	padding: 20px 29px;
 }
 
 
