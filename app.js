@@ -6,6 +6,7 @@ var white = true;
 var whiteInt;
 var blackInt;
 var gameOn = true;
+var moveCount = 1;
 
 $('.white').css('height', height);
 $('.black').css('height', height);
@@ -39,8 +40,9 @@ function startClock() {
 function endMove(whoPressedMe) {
 	if(gameOn) {		
 		if(white && whoPressedMe === 'white') {
+			$('#move-count').css('visibility', 'visible').css('color', 'white').text(moveCount++);
 			white = false;
-			console.log('\u2407');
+			//console.log('\u2407');
 			clearInterval(whiteInt);
 			$('#whiteOutput').removeClass('active');
 			$('#whiteOutput').addClass('paused');
@@ -53,7 +55,8 @@ function endMove(whoPressedMe) {
 			tickBlack();
 		} else if(!white && whoPressedMe === 'black'){
 			white = true;
-			console.log('\u2407');
+			$('#move-count').text(moveCount++).css('color', 'black');
+			//console.log('\u2407');
 			clearInterval(blackInt);
 			$('#blackOutput').removeClass('active');
 			$('#blackOutput').addClass('paused');

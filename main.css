@@ -68,6 +68,22 @@
 	font-size: 150px;
 }
 
+#move-count {
+	position: fixed;
+	width: 10%;
+	height: 10%;
+	background-color: grey;
+	color: white;
+	border: 1px solid black;
+	border-radius: 50%;
+	margin-left: 45%;
+	margin-top: .75%;
+	text-align: center;
+	font-size: 2rem;
+	line-height: 40px;
+	visibility: hidden;	
+}
+
 h1, h2, p {
 	text-align: center;
 }
